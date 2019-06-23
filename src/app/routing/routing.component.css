@@ -1,0 +1,19 @@
+.fixed{
+    position: fixed;
+    top: 50vh;
+}
+
+#sidebar-list li{
+    list-style-type: none;
+    font-size: 1.25em;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+code{
+    display: block;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}

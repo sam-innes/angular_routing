@@ -1,0 +1,129 @@
+@import '~highlight.js/styles/vs.css';
+
+*{
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.fixed{
+  position: fixed;
+  top: 50vh;
+}
+
+#sidebar-list li{
+  list-style-type: none;
+  font-size: 1.25em;
+}
+
+p{
+  color: black;
+}
+
+pre{
+  margin-bottom: 0;
+}
+
+pre > code.hljs{
+  margin-top: 0;
+}
+
+.hljs{
+  background: #fafafa;
+}
+
+code{
+  display: block;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+/* Class identifiers */
+
+.logo{
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.5vw;
+}
+
+.page{
+  margin-top: 8em;
+  background-color: #fafafa;
+}
+
+.card{
+  background-color: #fafafa;
+}
+
+.card-body{
+  padding: 2em 0 0 2em;
+}
+
+html, body {
+  overflow-x: hidden;
+  background-color: #fafafa;
+}
+
+/* Scroll indicator */
+.scroll-indicator{
+  color: #66cc33;
+}
+
+/* Note styling */
+.note{
+  display: flex;
+  background-color: #e7f3fe;
+  border-left: 6px solid #2196F3;
+  padding: 3vh 10px 3vh 10px;
+  vertical-align: middle;
+}
+
+
+/* Button style */
+.styled-button{
+  all: unset;
+
+  display: inline-block;
+  max-width: 10vw;
+  height: 8vh;
+  max-height: 12px;
+  min-height: 2em;
+
+  padding: 1em;
+  
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  transition: 0.3s;
+}
+
+.styled-button:hover{
+  color: white;
+  background-color: black;
+  text-decoration: none;
+}
+
+.min-width-buttons{
+  min-width: 8em;
+}
+
+
+/* Small sizing */
+
+@media (max-width: 991px){
+  #navbar-id{
+    margin-top: 1em;
+    right: 0;
+  }
+
+  .sizesmall{
+    display: none;
+  }
+
+  .logo{
+    font-size: 3em;
+  }
+
+  .page{
+    margin-top: 9em;
+  }
+}

@@ -1,0 +1,268 @@
+<section #page style="opacity: 0;" class="page">
+
+  <div class="container-fluid mb-5">
+    <div class="row">
+
+      <div class="container col-8">
+
+        <h1 class="mt-5" #introduction>Advanced</h1>
+        <p class="mt-3">
+          This advanced section will briefly cover some of the more advanced features in Angular. I will not be going
+          in depth into the concepts as some of them would
+          require a whole new tutorial by themselves. However, through covering some of these concepts, I hope that you
+          will begin to understand some of the features that are available to you.
+          <br />
+          <br />
+          These topics will all be related to the Angular Router, but if you're interested in expanding your knowledge
+          in other areas of the framework please click the
+          image below: which will take you to the Angular website.
+        </p>
+
+        <div class="d-flex justify-content-center mt-3 text-center">
+          <img src="http://itsuite.it.brighton.ac.uk/si133/images/angular.svg" (click)="AngularWindow()" />
+        </div>
+
+        <h1 class="mt-5" #dataRoutes>Data Routes</h1>
+        <p class="mt-3">
+          Data routes within Angular allow us to specify data that is loaded on a page, based on data that is passed
+          into the route. For example, if we hosted a page
+          that displayed the weather on certain days, we may want to filter out results to just return a single day, or
+          a week.
+          <br />
+          <br />
+          To do this we use what is known as an activated route. These are written into a router just like a normal
+          route, but with one additional tag. If we use the
+          example of the demo from the last section of the tutorial we already have a data page set up so that, when
+          the correct route is added to it, the
+          data page will display whatever you have typed into the URL.
+          <br />
+          <br />
+          The way that this is achieved is through a route that looks like this:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+          <div class="card-body">
+            <h5 class="card-title">app-routing.module.ts</h5>
+            <pre><code [highlight]="ActivatedRoute" (highlighted)="onHighlighted($event)"></code></pre>
+          </div>
+        </div>
+
+        <p class="mt-3">
+          As you can see, the route has a ':data' id. This can be replaced by anything that the user, or another
+          component routing to this, places in the url.
+          This data can then be extracted from the URL, and the code to do that is shown in the DataComponent:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+          <div class="card-body">
+            <h5 class="card-title">data.component.ts</h5>
+            <pre><code [highlight]="DataComponentExtract" (highlighted)="onHighlighted($event)"></code></pre>
+          </div>
+        </div>
+
+        <p class="mt-3">
+          This extracted data could be used in any way - I have left it as displaying the data on the webpage (using a data bind), but you
+          could use it to filter results in a table,
+          build a graph, or any number of other ways. It's a very powerful tool if you're looking to build a data heavy
+          web application.
+        </p>
+
+        <div class="note text-dark">
+            <p class="noteBody">
+              This will be the last point aimed specifically at the demo. From now I will be talking about concepts, 
+              although I will still be providing code - this code will not be directly linked to that demo.
+            </p>
+          </div>
+
+        <h1 class="mt-5" #nestedRoutes>Nested Routes</h1>
+        <p class="mt-3">
+          Nested routes is probably a bad way to describe it, but nested routes are routes that are called from inside another
+          component. If you try and add a routerLink from a button within a component, that routerLink will not work. That is 
+          because the router will interpret this as you trying to link within the current component (hence "nested").
+          <br />
+          <br />
+          To fix this, we can use a '(click)' event on our DOM element. These events listen for the specified event,
+          and carry out that function once the event
+          is complete. In this case, we will need to carry out a reroute, but how do we do this programatically?
+          <br />
+          <br />
+          Well, firstly we'll need to add a router within our component. Adding this will allow us to call any reroute
+          that we like from within the code. We do this by adding the following code to a component.ts file:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+          <div class="card-body">
+            <h5 class="card-title">data.component.ts</h5>
+            <pre><code [highlight]="NestedRouteRouterAdd" (highlighted)="onHighlighted($event)"></code></pre>
+          </div>
+        </div>
+
+        <p class="mt-3">
+          This will create a new 'router' object within the component. Next we add a function to the component that will 
+          reroute the page for us. This is very simple, I will name mine BackToHome and simply add this line.
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">data.component.ts</h5>
+              <pre><code [highlight]="NestedRouteReroute" (highlighted)="onHighlighted($event)"></code></pre>
+            </div>
+          </div>
+
+        <p class="mt-3">
+          Finally, we need to actually make the component listen for the click event. We do this by adding a "(click)" 
+          tag within the DOM element - shown here:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">data.component.html</h5>
+              <pre><code [highlight]="NestedRerouteClick" (highlighted)="onHighlighted($event)"></code></pre>
+            </div>
+          </div>
+
+        <p class="mt-3">
+          This tag can be applied to any element, for example an image or a button, and will be extremely useful. 
+          Rerouting in this way will allow you a lot of control in terms of flow of the user, especially if you're 
+          using router guards (these are explained later).
+        </p>
+
+
+
+
+
+        <h1 class="mt-5" #externalRoutes>External Routes</h1>
+
+        <p class="mt-3">
+          Although you can use simple "href" tags to route outside of your web application, you will need to 
+          provide the full URL to avoid rerouting within your own application. Once again, the reason that you 
+          may choose to do this using an Angular router is so that you can use Router Guards (I promise I'll talk 
+          about them soon).
+          <br />
+          <br />
+          To achieve an external route from Angular, firstly we have to create another route within the router module. 
+          This route will be slightly different as it will have a 'resolve' object and a 'data' object and, even though it's pointing externally, 
+          it must still have a component attached.
+          <br />
+          <br />
+          My suggestion would be to call the route something to do with the place you are routing to, and to have your 
+          component (this is something that is forced by Angular) to be your 404 page. As an example, the following code could be the route 
+          for a YouTube redirect:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">app-routing.module.ts</h5>
+              <pre><code [highlight]="ExternalRoute" (highlighted)="onHighlighted($event)"></code></pre>
+          </div>
+        </div>
+
+        <p class="mt-3">
+          However, we also need a way to provide that route. To do this we need to add an object to the '@NGModule decorator'. Helpfully, 
+          the object we are adding is called a 'provide', and put simply all it does is listen out for the route path, and provide a way to 
+          redirect that route. The code for the provide looks like this:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">app-routing.module.ts</h5>
+              <pre><code [highlight]="ExternalRouteProvide" (highlighted)="onHighlighted($event)"></code></pre>
+          </div>
+        </div>
+
+        <p class="mt-3">
+          This may seem over-complicated, and I'll be honest with you - for the purposes of a simple website, it really is. However, if you're 
+          developing a higher-end application that will be serving users or has forms on etc, you will need to know how to do this. Believe 
+          it or not, this is actually the less complicated way of achieving this. If you'd like to see another implementation, visit 
+          <a href="https://medium.com/@adrianfaciu/using-the-angular-router-to-navigate-to-external-links-15cc585b7b88" class="BlueText">this tutorial</a>.
+          I'll warn you now, if this tutorial is the first time you've heard of Angular, this is very confusing and I'd probably avoid it.
+        </p>
+
+
+        <h1 class="mt-5" #routerGuards>Router Guards</h1>
+        <p class="mt-3">
+          Router guards are the most powerful and also the most complex part of the router module. They allow us to 
+          perform checks on the user and any page elements before we do any routing. This can be very beneficial 
+          when creating a fully functional application.
+          <br />
+          <br />
+          For example, if somebody was using an app that you had built an admin section into - 
+          you would clearly not want that user to simply be able to access this page. Router guards can be used 
+          to stop anyone without correct authentication from accessing certain components within your site.
+          <br />
+          <br />
+          They can also be used to prompt users before leaving a page. This is useful if they are filling out 
+          a form and this information will be lost upon leaving. They do this through the use of 'canActivate' and 'candeactivate' tags.
+          <br />
+          <br />
+          Guards allows us to create very intricate interactions when navigating around a website. However, to integrate them fully, 
+          you would need to be able to make server API calls. Although you can fairly easily 
+          create a "fake" example of guarding within the application, this goes far beyond a routing tutorial. 
+          <br />
+          <br />
+          We can also use a combination of guards to reduce the risks of incorrect routing, which allows us to perform a string of actions 
+          before we actually carry out the rerouting.
+          <br />
+          <br />
+          Beyond this, there's not much more I can explain to you without code examples, and like I said - this would be enough content to provide a 
+          whole new tutorial.
+          <br />
+          <br />
+          However, there are already some very good tutorials out there that go more in depth about how to use these guards, and 
+          how to communicate with various external sources (through the use of Angular Injectable Services if you're 
+          interested at looking into it).
+          <br />
+          <br />
+          One such tutorial is <a href="https://medium.com/@ryanchenkie_40935/angular-authentication-using-route-guards-bf7a4ca13ae3" class="BlueText">this article on Medium by @ryanchenkie</a>, which gives code examples of 
+          this implementation.
+        </p>
+
+        <div class="d-flex justify-content-center">
+          <a href="https://medium.com/@ryanchenkie_40935/angular-authentication-using-route-guards-bf7a4ca13ae3">
+            <img src="http://itsuite.it.brighton.ac.uk/si133/images/medium.svg" class="img-fluid mt-3" style="max-height: 40vh;" />
+          </a>
+        </div>
+
+        <h1 class="mt-5" #summary>Summary</h1>
+        <p class="mt-3">
+          Hopefully during this tutorial you will have learned the following:
+        </p>
+        <ul class="text-dark">
+            <li>How to create a new Angular app</li>
+            <li>How to generate new components/modules</li>
+            <li>How to create a basic router</li>
+            <li>How to link components together</li>
+            <li>A little bit about advanced router features</li>
+        </ul> 
+
+        <p>
+          If you have any questions or feedback, please contact me using the information on the homepage, 
+          I hope you enjoyed this tutorial and hopefully learned something new!
+        </p>
+
+        <p class="mt-3">
+          If you're interested in learning a bit more about Angular, you could do much worse than the official Angular 
+          tutorial found here:
+          <br />
+          <br />
+          <a href="https://angular.io/guide/quickstart" class="BlueText">www.angular.io/guide/quickstart</a>
+          <br />
+          <br />
+          This provides a fantastic range of tutorials on all parts of the framework and is really helpful if you're 
+          interested in continuing to develop using the framework.
+        </p>
+      </div>
+
+      <div class="container col-3 d-none d-lg-flex pl-5" id="sidebar">
+        <ul class="align-items-center fixed" id="sidebar-list">
+          <li #introductionIndicator>Introduction</li>
+          <li #dataRoutesIndicator>Data Routes</li>
+          <li #nestedRoutesIndicator>Nested Routes</li>
+          <li #externalRoutesIndicator>External Routes</li>
+          <li #routerGuardsIndicator>Router Guards</li>
+          <li #summaryIndicator>Summary</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

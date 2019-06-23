@@ -1,0 +1,260 @@
+<section #page style="opacity: 0;" class="page">
+  <div class="container-fluid mb-5">
+    <div class="row">
+      <div class="container col-9 mt-5">
+        <h1 #intro>Routing</h1>
+        <p class="mt-3">
+          Routing is the part of Angular that let's us build a multipage application. The framework comes with a built
+          in router which is easy to set up, and provides us with some interesting features. For example, you may
+          have noticed while navigating around this site that switching pages doesn't load like a typical website
+          would.
+          <br />
+          <br />
+          It does this by loading various components within a single page, instead of loading the whole fresh pages
+          when a different url is entered. Not only is this vastly more efficient than the traditional way of loading
+          webpages, but it also allows for Angular to do things like retain data from components or use route guards -
+          more on these in the advanced section.
+          <br />
+          <br />
+          For this tutorial, I'll be using a basic app and building a router into it. If you'd like to follow along,
+          click the button below and a zip file will be downloaded. Decompress this file and use the ReadMe.txt
+          to help you get set up (it's very straightforward).
+        </p>
+
+        <div class="d-flex justify-content-center mt-4">
+          <a href="https://www.saminnes.com/demo/Demo.zip" download><button class="styled-button min-width-buttons" type="button">Download</button></a>
+        </div>
+
+        <h1 class="mt-5" #setup>Setting up the Router</h1>
+        <p class="mt-3">
+          The first thing we're going to need to do is set up the router. At this point it is essential to know some of the 
+          basics that were taught in the previous section -
+          especially what components are and what they are used for. So to start, you will need to open your
+          preferred code editor and open the folder that contains your project.
+        </p>
+
+        <div class="note text-dark mt-3">
+          <p class="noteBody">
+            Note: Although my recommendation is that you use the project that I have supplied - this is not 100%
+            neccessary.
+            It's entirely possible for you to simply read this tutorial, or to follow along and generate your own
+            components.
+            However, this will likely require at least a little experience in using the framework.
+          </p>
+        </div>
+
+        <p class="mt-3">
+          Once you have the folder open in your code editor, you'll want to open your 'app.module.ts' file. You'll also
+          want to open
+          a command line interface (CLI) and navigate to within the root of the app. Optionally, you may choose to use
+          a second CLI to
+          host your application using 'ng serve --open' - this isn't neccessary as we won't see any changes to our page as of
+          yet.
+          <br />
+          <br />
+          Now, at this point it would be very easy to just add a few lines to the 'app.module.ts' file and use that as
+          our router.
+          However, this is not good practice - when you start to build larger Angular apps, there will be far too much
+          clutter for one file.
+          <br />
+          <br />
+          Instead we're going to use another module that I have already defined for you - the 'app-routing.module.ts' file. 
+          If you're not using the demo that I have supplied - simply type the following line in your CLI:
+        </p>
+        <code>ng generate module app-routing --flat --module=app</code>
+        <div class="note text-dark mt-3">
+          <p class="noteBody">
+            The flags:
+            <br />
+            --flat : Notifies the CLI to add the file in src/app instead of a new folder
+            <br />
+            <br />
+            --module=app : This automates the process of importing our new module into 'app.module.ts'
+            <br />
+            <br />
+            Once this command is run, two new files should have been generated in 'src/app', one being 'app-routing.module.ts'. The code will
+            differ slightly - simply copy and paste the following code into your file.
+          </p>
+        </div>
+
+        <p class="mt-3">
+          The file should read as follows:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+          <div class="card-body">
+            <h5 class="card-title">app-routing.module.ts</h5>
+            <pre><code [highlight]="routingModuleCode" (highlighted)="onHighlighted($event)"></code></pre>
+          </div>
+        </div>
+
+        <p class="mt-3">
+          If it does - then the router is now set up for us to be able to start editing.
+        </p> 
+
+        <h1 class="mt-5" #routes>Routes</h1>
+        <p class="mt-3">
+          Firstly, and perhaps most obviously, we need to actually define some routes. To do this, we will need to have some components to 
+          actually route to. In the demo files - these components already exist, but if you're not using the demo, you'll need to generate some 
+          now. If you need reminding of how to do this, please revisit the 'Basics' section of the tutorial.
+          <br />
+          <br />
+          Our components each have their own individual names that are exported so they can be identified by another module, and this is how we are 
+          able to import modules into our router. In the demo project there are 3 components that we need to link together: 'HomeComponent', 
+          'FormComponent' and 'DataComponent'. At this point you may have worked out how to write your own imports, but if you need a helping  
+          hand don't worry - this is all you need to add to the top of your router file:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">app-routing.module.ts</h5>
+              <pre><code [highlight]="importComponents" (highlighted)="onHighlighted($event)"></code></pre>
+            </div>
+          </div>
+
+        <p class="mt-3">
+          If you need to find out what the name of a component is, simply open the file and there will be a line that says 'export class *'. 
+          Whatever replaces the * will be the name of your component.
+          <br />
+          <br />
+          Once you have completed all the imports, we need to create our routes. To do this, you'll be editing the constant array named 'appRoutes' above your 
+          '@NGModule' decorator. This will become the array that contains all the paths of the application. But how do we populate it?
+          <br />
+          <br />
+          Component routes are made up of two seperate variables: the path, and the component that the path should load. A path effectively 
+          defines what the user would traditionally see in the url, e.g. example.com/home or example.com/basics. This allows us to route a user 
+          how we would like, but also allow the user to enter any url that is hosted within the app.
+          <br />
+          <br />
+          So, if we want our user to be directed to the Home component when the url is example.com/home, our element in the array would look like this:
+        </p>
+
+        <div class="card mt-3 mb-3 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">app-routing.module.ts</h5>
+              <pre><code [highlight]="route1" (highlighted)="onHighlighted($event)"></code></pre>
+            </div>
+          </div>
+
+        <p>
+          Add the two remaining paths to your appRoutes constant and you're finished with a basic router! (Sort of)
+          <br />
+          <br />
+          Although yes, our router is working in the background, it hasn't been told where to load the components. To do this we need to add what is 
+          known as a 'Router Outlet'. This is what the components are loaded into - and part of the reason that Angular is so useful. A router-outlet 
+          is usually placed in the 'app.component.html' file, which is usually referred to as the root of the application.
+          <br />
+          <br />
+          If you have any experience with HTML, you will be aware that HTML is just markup - there's no constraints on anything you do. This means you 
+          can place the router outlet anywhere, and the rest of the content on a page will remain static. This means that, unlike normal HTML where the 
+          navbar typically is copied and pasted into each seperate HTML document, the navbar only has to be written once.
+          <br />
+          <br />
+          In this case, we will do exactly that. You should already have an 'app.component.html' file, and if you are following the demo, that will already 
+          have a very primitive nav bar within it (if you aren't, simply design one yourself as you would in any other website). The markup might look 
+          strange to begin with - it doesn't have doctype declarations or &lt;html&gt; tags in it so it's like an extract of a normal HTML document, 
+          but to add your outlet, simply put the following at the bottom of your document:
+        </p>
+
+        <div class="card mt-3 mb-1 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">app.component.html</h5>
+              <pre><code [highlight]="routerOutlet" (highlighted)="onHighlighted($event)"></code></pre>
+            </div>
+          </div>
+
+        <p><em>(this time it should actually work!)</em></p>
+
+        <p class="mt-3">
+          Now your app should be able to route between components! Just click between the pages and they should appear. But is the routing correct?
+        </p>
+
+        <h1 class="mt-5" #redirects>Redirects</h1>
+        <p class="mt-3">
+          Redirecting within a website is essential to it's functionality, as it allows for a website to have many pages. At the moment, your navbar may 
+          make the website redirect, but is the behaviour as you expected? After all I promised that Angular wouldn't use the typical loading of pages.
+          At this point although your links may work in your app, there's a much better way of performing redirects.
+          <br />
+          <br />
+          What we are going to be doing is replacing the 'href' links from the current implemenation, and replacing them with routerLinks. Routerlinks 
+          work in a similar way, but contain the linking to within the application (more on this later). A routerLink looks like this:
+        </p>
+
+        <div class="card mt-3 mb-1 d-none d-lg-flex">
+            <div class="card-body">
+              <h5 class="card-title">app.component.html</h5>
+              <pre><code [highlight]="routerLinkExample" (highlighted)="onHighlighted($event)"></code></pre>
+            </div>
+          </div>
+
+          <div class="note text-dark mt-3">
+              <p class="noteBody">
+                Breakdown:
+                <br />
+                <br />
+                class="nav-link" : As I am using Bootstrap, this is a way of styling up the navbar. <br />
+                routerLink="home" : Tells the app that when this link is clicked, the router should redirect to the 'home' route. <br />
+                routerLinkActive=" active" : When a component is active, this will add the class "active" to the classlist. This means that links 
+                become highlighted - again this is to do with Bootstrap
+              </p>
+            </div>
+
+        <p class="mt-3">
+          Once you have replaced all of your "href" links to use routerLinks instead, your code should now fluidly switch between components without a 
+          redirect.
+        </p>
+
+        <p class="mt-3">
+          If you have some experience with web administration, at this point you may be wondering about 404 errors - something we haven't yet dealt 
+          with. While hosting a website, having a dedicated page for a 404 error is good practice, as it allows for you to customize the view that users see 
+          should they receive this response. With Angular, it is no different and should be dealt with by our router.
+          <br />
+          <br />
+          Firstly, you should generate a component and, as you should know how this works by now, I've left that up to you. Once generated, write 
+          a route exactly how you've done up until now.
+          <br />
+          <br />
+          Once this is done, you should be able to access the route using the route that you defined. Except this is a 404 error page so why would 
+          we want to access it deliberately? Instead you should use what is known as a wild card. Change your route path to be '*' and now whenever you type in an address 
+          that isn't routable, Angular will automatically redirect you to a 404 page.
+          <br />
+          <br />
+          One final consideration before we can consider our router to be "done" is how does the router know which component to load on first access? This may 
+          have been something you've noticed if you have already loaded your website - we've not actually set our default page yet. To do this, we should add another route. This 
+          one should provide the path of nothing ("") and redirect to your chosen landing component (I would choose the Home component, but you don't have to).
+          This tells the router that this is the route that should be used as a landing page. 
+        </p>
+
+        <div class="d-flex container justify-content-center mt-5"><h5>We have a working router!</h5></div>
+        
+        <div class="container justify-content-center mt-3 mb-5 d-none d-lg-flex">
+            
+            <img src="http://itsuite.it.brighton.ac.uk/si133/images/fistbump.jpeg" class="img-fluid" style="height:50vh; border:none; opacity: 0.9" />
+          </div>
+
+
+        <h1 class="mt-5">Next</h1>
+        <p class="mt-3">
+          In the advanced section of this tutorial will focus on other features of the Angular router, which will allow you to create 
+          extremely dynamic and powerful applications. These features include passing data through routes, routing from within a component, external links, and a brief 
+          introduction into what router guards are.
+        </p>
+
+        <div class="d-flex justify-content-center">
+            <button class="styled-button mt-3 min-width-buttons" type="button" (click)="advance()"><span>Advance</span></button>
+          </div>
+      </div>
+
+
+
+      <div class="container col-3 d-none d-lg-flex pl-5" id="sidebar">
+        <ul class="align-items-center fixed" id="sidebar-list">
+          <li #introIndicator>Routing</li>
+          <li #setupIndicator>Router Setup</li>
+          <li #routesIndicator>Adding Routes</li>
+          <li #redirectsIndicator>Redirects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

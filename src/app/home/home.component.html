@@ -1,0 +1,133 @@
+<section #page style="opacity: 0;" class="page">
+  <div class="justify-content-center d-flex h-80 mt-3">
+    <div class="col-md-8 center-block flex-column" style="padding-left: 0px;  padding-right: 0px; clear: none;">
+      <img src="http://itsuite.it.brighton.ac.uk/si133/images/bg.jpeg"
+        class="img-fluid" />
+      <h1 class="top-left" style="position: absolute; left:16px; top:45%; max-width: 60%; color: gray;">Angular Routing
+        Tutorial</h1>
+    </div>
+  </div>
+
+
+
+  <div class="justify-content-center mt-5">
+    <div class="container justify-content-center">
+      <p class="text-center h1 mb-3 text-dark">What is Angular 6?</p>
+    </div>
+
+    <div class="flex-container justify-content-center mt-5">
+      <div class="card-group justify-content-center sizesmall">
+
+        
+        <div class="card col-sm-3 border-dark card-color">
+          <div class="card-body">
+            <h5 class="card-title text-dark">Data Binding</h5>
+            <p class="card-text text-dark">
+              Part of the power of Angular is it's ability to dynamically change data on a page as variables change. This is known as data binding.
+            </p>
+          </div>
+        </div>
+
+        <div class="card col-sm-3 border-dark card-color">
+          <div class="card-body">
+            <h5 class="card-title text-dark">Multi Platform</h5>
+            <p class="card-text text-dark">
+              From mobile phones to laptops, Angular allows for any modern, evergreen web browser to load a powerful application
+              without the need for any additional application installs.
+            </p>
+          </div>
+        </div>
+
+        <div class="card col-sm-3 border-dark card-color">
+          <div class="card-body">
+            <h5 class="card-title text-dark">Modularity</h5>
+            <p class="card-text text-dark pb-3">
+              Modularity in programming is a life saver for most developers. It's no different in Angular.
+              The way that a large scale website can be seperated into different modules helps keep an application
+              readable, easy to extend and easy to implement.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container justify-content-center mt-4">
+        <p class="text-center text-dark h5 mt-4">
+          Angular is a powerful framework that allows for the rapid development of data heavy web applications.
+          It’s an environment that combines the concepts of object-oriented programming with user friendly web
+          interfaces, producing bespoke, dynamic websites for users on a range of devices.
+          <br /><br />
+          Although developing an application using Angular may seem like a complicated task, the way that the framework
+          structures the code makes the development of a larger websites much easier to comprehend.
+          <br /><br />
+          For examples of where Angular has been used for developing applications, visit <a (click)="examples()" id="OverrideBlue">madewithangular.com</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid justify-content-center bg-dark mt-5 pt-5 pb-5 p-0">
+    <h1 class="text-light text-center pt-3">Prerequisites</h1>
+    <div class="row justify-content-center pb-3">
+      <a href="https://www.w3schools.com/html/" class="mr-5 mt-3">
+        <svg viewBox="0 0 452 520" style="width: 15vw; max-width:200px;">
+          <title>HTML5 Logo Badge</title>
+          <path fill='RGB(227,79,38)' d='M 41,460 L 0,0 451,0 410,460 225,512'/>
+          <path fill='RGB(239,101,42)' d='M 226,472 L 375,431 410,37 226,37'/>
+          <path fill='RGB(236,237,238)' d='M 226,208 L 151,208 146,150 226,150 226,94 84,94 99,265 226,265 z M 226,355 L162,338 158,293 102,293 109,382 226,414 z'/>
+          <path fill='RGB(255,255,255)' d='M 226,265 L 295,265 288,338 226,355 226,414 341,382 357,208 226,208 z M 226,94 L226,150 362,150 367,94 z'/>
+        </svg>      
+      </a>
+      <a href="https://www.w3schools.com/css/" class="mr-5 mt-3">
+        <svg viewBox="0 0 452 520" style="width: 15vw; max-width:200px;">
+          <title>Javascript Logo Badge</title>
+          <path fill='RGB(229,162,40)' d='M 0,0 L 451,0 410,460 225,512 41,460'/>
+          <path fill='RGB(241,191,38)' d='M 226,472 L375,431 410,37 226,37'/>
+          <path fill='RGB(236,237,238)' d='M 226,94 L 113,94 102,265 226,265 226,208 160,208 165,150 226,150 z M 226,355 L 162,338 158,293 102,293 109,382 226,414 z'/>
+          <path fill='RGB(255,255,255)' d='M 226,265 L 295,265 288,338 226,355 226,414 341,382 357,208 226,208 z M 226,94 L 339,94 357,180 301,180 293,150 226,150 z'/>
+        </svg>
+      </a>
+      <a href="https://www.w3schools.com/js/" class="mr-5 mt-3">
+        <svg viewBox="0 0 452 520" style="width: 15vw; max-width:200px;">
+          <title>CSS3 Logo Badge</title>
+          <path fill='RGB(12,115,184)' d='M 41,460 L 0,0 451,0 410,460 225,512'/>
+          <path fill='RGB(48,169,220)' d='M 226,472 L 375,431 410,37 226,37'/>
+          <path fill='RGB(236,237,238)' d='M 226,208 L 94,208 99,265 226,265 z M 226,94 L 84,94 89,150 226,150 z M 226,355 L 102,322 109,382 226,414 z'/>
+          <path fill='RGB(255,255,255)' d='M 226,265 L 295,265 288,338 226,355 226,414 341,382 367,94 226,94 226,150 306,150 300,208 226,208 z'/>
+        </svg>     
+       </a>
+    </div>
+
+    <p class="container text-center text-light mt-5 h4">As a web based platform - any prior experience in web
+      design will be useful for use in Angular. Any experience in object oriented programming will also be
+      helpful when understanding the concepts of the language.</p>
+  </div>
+
+  <div class="container-fluid justify-content-center mt-5 p-0">
+    <h1 class="text-center pt-3">To Come</h1>
+    <div class="container justify-content-center pb-3">
+      <p class="text-center mt-5 p-0 h4">
+        This tutorial will be based around how routing in Angular works, implementing a simple router and 
+        looking into more complex topics. It will be aimed at webmasters who have little experience in Angular 6.
+        <br />
+        <br />
+        If you have no experience in Angular at all, please visit
+        the basics section first which will quickly get you up and running with your first project. 
+        Otherwise, head straight into the routing section of the tutorial.
+      </p>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button class="styled-button mr-2 min-width-buttons align-middle" type="button" (click)="basics()">Basics</button>
+      <button class="styled-button ml-2 min-width-buttons align-middle" type="button" (click)="routing()">Routing</button>
+    </div>
+
+    <div class="container mt-5 pt-5 mb-5 border-top border-dark justify-content-center text-center">
+      <h1>Contact me</h1>
+      <p class="mt-3 mb-3">
+        If you have any questions about the tutorial or Angular in general, please contact me using: 
+        <br />
+        <a href="mailto:sam.innes1@uni.brighton.ac.uk" class="BlueText">sam.innes1@uni.brighton.ac.uk</a>
+      </p>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+
+    <a class="navbar-brand border-right pr-4 logo" routerLink="home">Angular {{ '{' }}</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" id="navbar-id">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="home" routerLinkActive=" active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="basics" routerLinkActive=" active">Angular Basics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="routing" routerLinkActive=" active">Routing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="advanced" routerLinkActive=" active">Advanced Routing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="review" routerLinkActive=" active">Report</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+<img src="http://itsuite.it.brighton.ac.uk/si133/images/up.svg" class="hideme BackToTop d-none d-lg-flex" (click)="BackUp()" #up />
